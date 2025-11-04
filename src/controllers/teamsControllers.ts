@@ -26,13 +26,13 @@ class TeamsController {
       }
     });
 
-    return response.status(201).json({team});
+    return response.status(201).json({ team });
   }
 
   async index(request: Request, response: Response) {
     const teams = await prisma.team.findMany();
 
-    return response.json("teams");
+    return response.json({teams});
   }
 
   async tasksTeam(request: Request, response: Response) {
