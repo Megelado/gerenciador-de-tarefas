@@ -23,7 +23,7 @@ function ensureAuthenticated(request: Request, response: Response, next: NextFun
 
     request.user = {
       id: user_id,
-      role,
+      role as "member" | "admin",
     };
 
     return next();
