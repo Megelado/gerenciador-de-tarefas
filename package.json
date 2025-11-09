@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "dotenv -e .env -- tsx watch src/server.ts",
     "test:dev": "NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll --runInBand",
-    "start": "npx prisma migrate deploy && tsx src/server.ts"
+    "start": "npx prisma migrate deploy && tsx src/server.ts",
+    "build": "tsc"
   },
   "author": "Michael Silva",
   "license": "ISC",
