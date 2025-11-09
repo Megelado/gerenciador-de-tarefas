@@ -1,9 +1,36 @@
+version: "3.9"
+
 services:
   postgres:
-    image: "bitnami/postgresql:latest"
-    ports:
-      - "5432:5432"
+    image: bitnami/postgresql:latest
+    container_name: gerenciador_de_tarefas_postgres
+    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: api
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/bitnami/postgresql
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gerenciador_de_tarefas_api
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/api"
+      PORT: 3333
+    ports:
+      - "3333:3333"
+    volumes:
+      - .:/app
+      - ./uploads:/app/uploads  # 👈 mantém os uploads sincronizados localmente
+    command: sh -c "npx prisma migrate deploy && npm run dev"
+
+volumes:
+  postgres_data:

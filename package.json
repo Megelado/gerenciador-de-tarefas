@@ -1,10 +1,10 @@
 {
-  "name": "gerenciador-de-tarefas",
+  "name": "server",
   "version": "1.0.0",
-  "description": "API de gerenciamento de tarefas",
+  "description": "API para a aplicação helpdesk",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch --env-file .env src/server.ts",
+    "dev": "dotenv -e .env -- tsx watch src/server.ts",
     "test:dev": "NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll --runInBand",
     "start": "npx prisma migrate deploy && tsx src/server.ts"
   },
@@ -16,7 +16,10 @@
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "node-fetch": "^2.7.0",
     "prisma": "^5.19.1",
+    "uuid": "^8.3.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -24,8 +27,12 @@
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.13",
     "@types/jsonwebtoken": "^9.0.6",
+    "@types/multer": "^2.0.0",
     "@types/node": "^20.14.12",
+    "@types/node-fetch": "^2.6.13",
     "@types/supertest": "^6.0.2",
+    "@types/uuid": "^10.0.0",
+    "dotenv-cli": "^11.0.0",
     "jest": "^29.7.0",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
